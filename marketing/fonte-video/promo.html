@@ -1,0 +1,218 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Outfit:wght@400;600;800&display=block" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#07060b;font-family:Outfit,sans-serif;color:#f5f1ea}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.layer{position:absolute;inset:0;opacity:0}
+.d{font-family:Bangers,Impact,sans-serif;letter-spacing:.02em}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.lines{position:absolute;inset:-50%;background:repeating-conic-gradient(from 0deg at 50% 50%,#ffffff0d 0deg 1.2deg,transparent 1.2deg 6deg)}
+.glowbg{position:absolute;inset:0;background:radial-gradient(900px 900px at 50% 50%,#ff7a0040,transparent 65%)}
+.grad{background:linear-gradient(180deg,#fff7d6 0%,#ffc94d 38%,#ff7a00 72%,#d14a00 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 0 #3b1300) drop-shadow(0 0 30px #ff7a0088)}
+.tv{display:inline-block;font-size:.5em;padding:.18em .38em .1em;border-radius:.25em;background:linear-gradient(135deg,#7dd3fc,#38bdf8 50%,#818cf8);color:#06121f;box-shadow:0 0 40px #38bdf8aa;transform:skewX(-8deg);vertical-align:middle}
+.phone{position:absolute;left:50%;width:820px;height:1500px;border-radius:90px;background:#000;padding:22px;box-shadow:0 0 0 6px #2a2335,0 0 0 10px #000,0 60px 160px -20px #ff7a0099,0 0 120px #38bdf833;transform-origin:50% 50%}
+.phone .scr{width:100%;height:100%;border-radius:70px;overflow:hidden;position:relative;background:#07060b}
+.phone img{width:100%;display:block;position:absolute;left:0;top:0}
+.notch{position:absolute;top:22px;left:50%;transform:translateX(-50%);width:260px;height:44px;background:#000;border-radius:0 0 30px 30px;z-index:3}
+.cap{position:absolute;left:0;right:0;text-align:center;padding:0 60px}
+.chip{display:inline-block;padding:14px 34px;border-radius:999px;background:#ff7a00;color:#1a0900;font-weight:800;font-size:40px;box-shadow:0 10px 50px #ff7a00aa}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50}
+.spark{position:absolute;width:6px;height:60px;border-radius:6px;background:linear-gradient(#fff,#ffc94d00)}
+.bolt{position:absolute;z-index:40}
+</style></head>
+<body><div id="stage">
+  <div class="lines" id="lines"></div>
+  <div class="glowbg" id="glowbg"></div>
+
+  <!-- S1: esferas convergindo -->
+  <div class="layer" id="s1"><div id="orbs"></div><div id="sparks"></div></div>
+
+  <!-- S2: logo -->
+  <div class="layer center" id="s2">
+    <div id="emblem"></div>
+    <div class="d" id="logo" style="font-size:190px;line-height:1;margin-top:20px;white-space:nowrap"><span class="grad" style="display:inline-block;transform:skewX(-8deg);padding:0 .1em">KAKAROTO</span><span class="tv">TV</span></div>
+    <div id="sub" style="margin-top:40px;font-size:50px;font-weight:800;letter-spacing:.35em;color:#7dd3fc"></div>
+  </div>
+
+  <!-- S3: paredão de capas -->
+  <div class="layer" id="s3">
+    <div id="wall" style="position:absolute;left:50%;top:-700px;width:2000px;margin-left:-1000px;perspective:1600px">
+      <div id="wallin" style="display:grid;grid-template-columns:repeat(6,1fr);gap:22px;transform-style:preserve-3d"></div>
+    </div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,#07060bcc 0%,#07060b55 45%,#07060b00 70%),linear-gradient(#07060b 0%,#07060b00 18%,#07060b00 82%,#07060b 100%)"></div>
+    <div class="center" style="position:absolute;inset:0">
+      <div class="d" id="t3a" style="font-size:190px;line-height:.95;text-shadow:0 10px 40px #000">ANIME NOVO</div>
+      <div class="d grad" id="t3b" style="font-size:250px;line-height:.95">TODO DIA</div>
+      <div id="t3c" style="margin-top:40px;font-size:48px;font-weight:800;letter-spacing:.12em;color:#7dd3fc;background:#07060bdd;border:2px solid #38bdf866;border-radius:999px;padding:16px 40px;box-shadow:0 0 40px #38bdf855">O SITE ATUALIZA TODO DIA</div>
+    </div>
+  </div>
+
+  <!-- S4: home rolando -->
+  <div class="layer" id="s4">
+    <div class="cap" style="top:90px"><div class="d" style="font-size:120px;line-height:1">TUDO EM <span class="grad">PT-BR</span></div><div style="font-size:44px;font-weight:600;color:#a39cb0;margin-top:16px">Só onde tem legenda oficial</div></div>
+    <div class="phone" id="ph4" style="top:330px;margin-left:-410px"><div class="notch"></div><div class="scr"><img id="home" src="assets/m-home-full.png"></div></div>
+  </div>
+
+  <!-- S5: radar / esferas -->
+  <div class="layer" id="s5">
+    <div class="cap" style="top:90px"><div class="d" style="font-size:118px;line-height:1">CACE AS <span class="grad">7 ESFERAS</span></div><div style="font-size:44px;font-weight:600;color:#a39cb0;margin-top:16px">Escondidas nos animes. Mudam todo dia.</div></div>
+    <div class="phone" id="ph5" style="top:360px;margin-left:-410px"><div class="notch"></div><div class="scr"><img id="radarimg" src="assets/m-radar.png"></div></div>
+    <div id="row5" style="position:absolute;left:0;right:0;bottom:70px;display:flex;justify-content:center;gap:14px"></div>
+  </div>
+
+  <!-- S6: página com esfera + calendário -->
+  <div class="layer" id="s6">
+    <div class="cap" style="top:90px"><div class="d" style="font-size:112px;line-height:1">NÃO PERCA <span class="grad">NENHUM EP</span></div><div style="font-size:44px;font-weight:600;color:#a39cb0;margin-top:16px">Calendário + contagem regressiva</div></div>
+    <div class="phone" id="ph6a" style="top:380px;margin-left:-410px;width:640px;height:1240px;border-radius:72px"><div class="notch" style="width:200px"></div><div class="scr" style="border-radius:56px"><img src="assets/m-cal.png"></div></div>
+    <div class="phone" id="ph6b" style="top:520px;margin-left:-410px;width:640px;height:1240px;border-radius:72px"><div class="notch" style="width:200px"></div><div class="scr" style="border-radius:56px"><img src="assets/m-anime.png"></div></div>
+  </div>
+
+  <!-- S7: nível de poder -->
+  <div class="layer center" id="s7">
+    <div style="font-size:54px;font-weight:800;letter-spacing:.4em;color:#7dd3fc">NÍVEL DE PODER</div>
+    <div class="d grad" id="power" style="font-size:330px;line-height:1;margin-top:20px">0</div>
+    <div style="width:820px;height:34px;border-radius:99px;background:#ffffff15;margin-top:40px;overflow:hidden"><div id="bar" style="height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#ff7a00,#ffc94d,#38bdf8)"></div></div>
+    <div class="d" id="over" style="font-size:150px;margin-top:70px;color:#38bdf8;text-shadow:0 0 50px #38bdf8">PASSOU DE 9000!</div>
+    <div style="font-size:44px;color:#a39cb0;margin-top:20px;font-weight:600">Favorite, colete, faça desejos.</div>
+  </div>
+
+  <!-- S8: final -->
+  <div class="layer center" id="s8">
+    <div id="emblem2"></div>
+    <div class="d" style="font-size:170px;line-height:1;margin-top:10px;white-space:nowrap"><span class="grad" style="display:inline-block;transform:skewX(-8deg);padding:0 .1em">KAKAROTO</span><span class="tv">TV</span></div>
+    <div id="feats" style="margin-top:60px;display:flex;flex-direction:column;gap:22px;font-size:48px;font-weight:600"></div>
+    <div id="cta" style="margin-top:90px"><span class="chip d" style="font-size:90px;padding:20px 70px 14px;letter-spacing:.04em">LINK NA BIO</span></div>
+    <div id="free" style="margin-top:44px;font-size:46px;color:#ffc94d;font-weight:800;letter-spacing:.2em">ACESSE AGORA</div>
+    <div id="credit" style="position:absolute;bottom:110px;left:0;right:0;text-align:center;opacity:0"><div style="font-size:30px;letter-spacing:.4em;color:#a39cb0;font-weight:600">CRIADO POR</div><div class="d" style="font-size:72px;margin-top:6px;color:#f5f1ea;text-shadow:0 0 30px #ff7a0088">RODRIGO CARDOSO</div></div>
+  </div>
+
+  <div id="bolts" style="position:absolute;inset:0;z-index:45;pointer-events:none"></div>
+  <div class="flash" id="flash"></div>
+</div>
+<script>
+const ORB = (n, size, id) => {
+  const sp = Array.from({length:n},(_,i)=>{const a=i/n*Math.PI*2-Math.PI/2,r=n===1?0:13,x=50+Math.cos(a)*r,y=52+Math.sin(a)*r;
+    return `<path d="M${x} ${y-7} L${x+2} ${y-2} L${x+7} ${y} L${x+2} ${y+2} L${x} ${y+7} L${x-2} ${y+2} L${x-7} ${y} L${x-2} ${y-2} Z" fill="#e0f2ff" stroke="#38bdf8" stroke-width="1"/>`}).join("");
+  return `<svg viewBox="0 0 100 100" width="${size}" height="${size}" style="filter:drop-shadow(0 0 20px #ff9a2bcc) drop-shadow(0 0 50px #ff7a0066)"><defs><radialGradient id="g${id}" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#fff7d6"/><stop offset="25%" stop-color="#ffc94d"/><stop offset="70%" stop-color="#ff7a00"/><stop offset="100%" stop-color="#b33c00"/></radialGradient></defs><circle cx="50" cy="50" r="46" fill="url(#g${id})"/><ellipse cx="50" cy="52" rx="34" ry="12" fill="none" stroke="#fff3" stroke-width="1.5" transform="rotate(-18 50 52)"/>${sp}<ellipse cx="34" cy="26" rx="14" ry="8" fill="#fff" opacity=".45" transform="rotate(-30 34 26)"/></svg>`;
+};
+const EMBLEM = (s) => `<svg viewBox="0 0 64 64" width="${s}" height="${s}" style="filter:drop-shadow(0 0 30px #ff9a2bcc) drop-shadow(0 0 80px #ff7a0088)"><defs><radialGradient id="eg" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#fff7d6"/><stop offset="30%" stop-color="#ffc94d"/><stop offset="75%" stop-color="#ff7a00"/><stop offset="100%" stop-color="#a33600"/></radialGradient><linearGradient id="eb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e0f7ff"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient></defs><circle cx="32" cy="32" r="27" fill="url(#eg)"/><ellipse cx="32" cy="34" rx="30" ry="9" fill="none" stroke="#38bdf8" stroke-width="2.5" transform="rotate(-20 32 34)"/><path d="M36 8 L22 35 L31 35 L26 56 L44 26 L34 26 L40 8 Z" fill="url(#eb)" stroke="#06121f" stroke-width="2" stroke-linejoin="round"/><ellipse cx="22" cy="18" rx="8" ry="4.5" fill="#fff" opacity=".55" transform="rotate(-30 22 18)"/></svg>`;
+
+const $ = (id) => document.getElementById(id);
+$("orbs").innerHTML = [1,2,3,4,5,6,7].map(n => `<div class="o" style="position:absolute;left:0;top:0">${ORB(n,170,"a"+n)}</div>`).join("");
+$("sparks").innerHTML = Array.from({length:40},(_,i)=>`<div class="spark" data-i="${i}"></div>`).join("");
+$("emblem").innerHTML = EMBLEM(260);
+$("emblem2").innerHTML = EMBLEM(220);
+$("row5").innerHTML = [1,2,3,4,5,6,7].map(n => `<div class="r5">${ORB(n,120,"r"+n)}</div>`).join("");
+const FEATS = ["Catálogo atualizado todo dia","Onde assistir legendado em PT-BR","Favoritos + calendário de episódios","Caça às 7 Esferas e nível de poder"];
+$("feats").innerHTML = FEATS.map(f => `<div class="ft" style="opacity:0"><span style="color:#ffc94d">⚡</span> ${f}</div>`).join("");
+
+const clamp = (x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const ease = (x)=>1-Math.pow(1-clamp(x),3);
+const easeIn = (x)=>Math.pow(clamp(x),3);
+const back = (x)=>{x=clamp(x);const c=1.9;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const rnd = (i)=>{const x=Math.sin(i*999.13)*43758.5453;return x-Math.floor(x)};
+const seg = (t,a,b)=>clamp((t-a)/(b-a));
+const vis = (el,t,a,b,fade=.25)=>{ const o = Math.min(seg(t,a,a+fade), 1-seg(t,b-fade,b)); el.style.opacity = (t<a||t>b)?0:o; return t>=a&&t<=b; };
+const shake = (t,amp)=> amp ? `translate(${(rnd(Math.floor(t*60))-.5)*amp}px,${(rnd(Math.floor(t*60)+7)-.5)*amp}px)` : "";
+
+$("wallin").innerHTML = Array.from({length:48},(_,i)=>`<img src="assets/covers/c${String(i%36).padStart(2,"0")}.jpg" style="width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:22px;box-shadow:0 20px 50px #000a">`).join("");
+const boltPath = (seed) => { let x=0,y=0,d=`M0 0`; for(let i=1;i<=9;i++){ x += (rnd(seed+i)-.5)*160; y += 220; d+=` L${x.toFixed(0)} ${y}`; } return d; };
+const CUTS=[2.9,5.9,9.1,14.1,18.6,22.1,24.2,25.6];
+$("bolts").innerHTML = CUTS.map((c,k)=>[0,1].map(j=>{const sd=k*10+j*5;return `<svg class="bolt" data-c="${c}" width="1080" height="1920" style="position:absolute;left:0;top:0;opacity:0" viewBox="0 0 1080 1920"><g transform="translate(${180+rnd(sd)*720},-40) rotate(${(rnd(sd+1)-.5)*30})"><path d="${boltPath(sd)}" fill="none" stroke="#7dd3fc" stroke-width="26" opacity=".35" stroke-linejoin="round"/><path d="${boltPath(sd)}" fill="none" stroke="#fff" stroke-width="9" stroke-linejoin="round"/></g></svg>`}).join("")).join("");
+const DUR = 30;
+window.DUR = DUR;
+window.render = (t) => {
+  // fundo
+  $("lines").style.transform = `rotate(${t*6}deg) scale(${1+.05*Math.sin(t*2)})`;
+  $("glowbg").style.opacity = .6+.4*Math.sin(t*3);
+
+  // flashes nos cortes
+  const flashes=CUTS;
+  document.querySelectorAll('.bolt').forEach(el=>{const d=t-(+el.dataset.c); el.style.opacity = (d>=0&&d<.3) ? (Math.floor(d*40)%2?1:.4)*(1-d/.3) : 0;});
+  let f=0; for(const ft of flashes){const d=t-ft; if(d>=0&&d<.35) f=Math.max(f,1-d/.35);} $("flash").style.opacity=f*.55;
+
+  // S1 0–3.1
+  if (vis($("s1"),t,0,3.1,.2)) {
+    const k = easeIn(seg(t,0,2.8));
+    document.querySelectorAll("#orbs .o").forEach((el,i)=>{
+      const a = i/7*Math.PI*2 + t*(1+k*4);
+      const r = 900*(1-k)+60*(1-k)+ (k>=1?0:0);
+      const R = 650*(1-k) + 40;
+      const x = 540+Math.cos(a)*R-85, y = 960+Math.sin(a)*R-85;
+      el.style.transform = `translate(${x}px,${y}px) scale(${.6+k*.5}) rotate(${t*200}deg)`;
+      el.style.opacity = clamp(t*3);
+    });
+    document.querySelectorAll("#sparks .spark").forEach((el)=>{
+      const i=+el.dataset.i, a=rnd(i)*Math.PI*2, ph=((t*1.3+rnd(i+3))%1);
+      const R=1100*(1-ph);
+      el.style.transform=`translate(${540+Math.cos(a)*R}px,${960+Math.sin(a)*R}px) rotate(${a*180/Math.PI+90}deg) scaleY(${.5+ph})`;
+      el.style.opacity=ph*.9*clamp(t);
+    });
+    $("s1").style.transform = shake(t, 22*seg(t,1.6,3));
+  }
+
+  // S2 2.9–6.0 logo
+  if (vis($("s2"),t,2.9,6.0,.15)) {
+    const k = back(seg(t,2.9,3.4));
+    $("logo").style.transform = `scale(${3-2*k}) ${shake(t, 30*(1-seg(t,3.2,3.9)))}`;
+    $("emblem").style.transform = `scale(${back(seg(t,3.1,3.6))}) rotate(${(1-ease(seg(t,3.1,3.8)))*-180}deg)`;
+    const sub="SEU RADAR DE ANIME"; $("sub").textContent = sub.slice(0, Math.floor(seg(t,3.7,4.6)*sub.length));
+  }
+
+  // S3 5.9–9.2 paredão
+  if (vis($("s3"),t,5.9,9.2,.15)) {
+    const z = ease(seg(t,5.9,6.6));
+    $("wallin").style.transform = `rotateX(28deg) rotateZ(-14deg) translateZ(${-500+400*z}px) translateY(${-(t-5.9)*220}px)`;
+    $("t3a").style.opacity = seg(t,6.2,6.3); $("t3a").style.transform=`scale(${1.8-.8*back(seg(t,6.2,6.55))}) ${shake(t, 18*(1-seg(t,6.3,6.9)))}`;
+    $("t3b").style.opacity = seg(t,6.7,6.8); $("t3b").style.transform=`scale(${2-back(seg(t,6.7,7.1))}) ${shake(t, 26*(1-seg(t,6.8,7.6)))}`;
+    $("t3c").style.opacity = seg(t,7.5,7.8); $("t3c").style.letterSpacing = (.12+.1*(1-ease(seg(t,7.5,8.2))))+"em";
+  }
+
+  // S4 9.1–14.2 home rolando
+  if (vis($("s4"),t,9.1,14.2,.2)) {
+    $("ph4").style.transform = `translateY(${(1-ease(seg(t,9.1,9.8)))*900}px) rotate(${(1-ease(seg(t,9.1,9.9)))*8}deg)`;
+    const img=$("home"); const maxS = img.naturalHeight*(776/img.naturalWidth) - 1456;
+    const sc = ease(seg(t,10.0,14.0))*Math.min(maxS, 4200);
+    img.style.transform = `translateY(${-sc}px)`;
+  }
+
+  // S5 14.1–18.7 radar
+  if (vis($("s5"),t,14.1,18.7,.2)) {
+    $("ph5").style.transform = `scale(${.85+.15*ease(seg(t,14.1,14.7))}) rotate(${-4+4*ease(seg(t,14.1,14.8))}deg)`;
+    $("radarimg").style.transform = `translateY(${-ease(seg(t,14.6,15.6))*260}px)`;
+    document.querySelectorAll(".r5").forEach((el,i)=>{ const k=back(seg(t,15.4+i*.32,15.75+i*.32)); el.style.transform=`scale(${k}) translateY(${Math.sin(t*4+i)*8}px)`; el.style.opacity=clamp(k); });
+    $("s5").style.transform = shake(t, t>17.6&&t<18.2?14:0);
+  }
+
+  // S6 18.6–22.2
+  if (vis($("s6"),t,18.6,22.2,.2)) {
+    const a=ease(seg(t,18.6,19.3)), b=ease(seg(t,19.4,20.1));
+    $("ph6a").style.transform = `translateX(${-520*(1-a) - 60*b}px) rotate(${-6*b}deg) scale(${1-.05*b})`;
+    $("ph6b").style.transform = `translateX(${1200*(1-b)+240}px) rotate(${6}deg)`;
+  }
+
+  // S7 22.1–25.7 poder
+  if (vis($("s7"),t,22.1,25.7,.2)) {
+    const k = easeIn(seg(t,22.3,24.2));
+    const val = Math.floor(19001*k);
+    $("power").textContent = val.toLocaleString("pt-BR");
+    $("power").style.transform = `scale(${1+.15*Math.sin(t*30)*k*(t<24.2?1:0)}) ${shake(t, t<24.3? 24*k : 0)}`;
+    $("bar").style.width = (k*100)+"%";
+    $("over").style.opacity = seg(t,24.2,24.3);
+    $("over").style.transform = `scale(${2.2-1.2*back(seg(t,24.2,24.6))}) rotate(-4deg)`;
+  }
+
+  // S8 25.6–30
+  if (vis($("s8"),t,25.6,30.5,.2)) {
+    $("emblem2").style.transform = `scale(${back(seg(t,25.6,26.1))}) rotate(${t*20}deg)`;
+    document.querySelectorAll(".ft").forEach((el,i)=>{ const k=ease(seg(t,26.3+i*.35,26.7+i*.35)); el.style.opacity=k; el.style.transform=`translateX(${(1-k)*-120}px)`; });
+    const c=back(seg(t,27.9,28.4)); $("cta").style.transform=`scale(${c*(1+.04*Math.sin(t*8))})`; $("cta").style.opacity=clamp(c);
+    $("free").style.opacity = seg(t,28.4,28.8);
+    const cr = ease(seg(t,28.6,29.1)); $("credit").style.opacity = cr; $("credit").style.transform = `translateY(${(1-cr)*40}px)`;
+  }
+};
+window.render(0);
+</script>
+</body></html>

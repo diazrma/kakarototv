@@ -1,0 +1,37 @@
+import { chromium } from "playwright";
+const A = "assets/";
+const b = await chromium.launch();
+const ctx = await b.newContext({ viewport: { width: 430, height: 932 }, deviceScaleFactor: 2.5, isMobile: true, hasTouch: true });
+const p = await ctx.newPage();
+const base = "http://localhost:3100";
+await p.goto(base, { waitUntil: "networkidle" });
+// favoritos e esferas para as telas ficarem “vivas”
+const favs = await p.evaluate(() => [...document.querySelectorAll('a[href^="/anime/"] img')].slice(0, 8).map((img) => ({ id: Number(img.closest("a").getAttribute("href").split("/")[2]), title: img.alt, cover: img.src })));
+const day = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
+await p.evaluate(([f, d]) => localStorage.setItem("kakarototv:v1", JSON.stringify({ favorites: f, spheres: [1, 2, 3, 5, 6], sphereDay: d, wishes: 1 })), [favs.filter((x) => x.title).slice(0, 6), day]);
+await p.reload({ waitUntil: "networkidle" });
+await p.waitForTimeout(1500);
+await p.screenshot({ path: A + "m-hero.png" });
+await p.screenshot({ path: A + "m-home-full.png", fullPage: true });
+await p.evaluate(() => { const el = document.querySelector(".radar-sweep"); document.documentElement.style.scrollBehavior = "auto"; window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: "instant" }); });
+await p.evaluate(() => window.scrollBy(0, -70));
+await p.waitForTimeout(800);
+await p.screenshot({ path: A + "m-radar.png" });
+const href = await p.evaluate(() => [...document.querySelectorAll("a")].find((a) => a.textContent.includes("Dica secreta"))?.getAttribute("href"));
+await p.goto(base + href, { waitUntil: "networkidle" });
+await p.waitForTimeout(2000);
+await p.screenshot({ path: A + "m-anime.png" });
+await p.screenshot({ path: A + "m-anime-full.png", fullPage: true });
+await p.goto(base + "/calendario", { waitUntil: "networkidle" });
+await p.waitForTimeout(800);
+await p.screenshot({ path: A + "m-cal.png" });
+await p.goto(base + "/perfil", { waitUntil: "networkidle" });
+await p.waitForTimeout(1500);
+await p.screenshot({ path: A + "m-perfil.png" });
+// desktop para o “mock” de notebook
+const d = await b.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.5 });
+await d.goto(base, { waitUntil: "networkidle" });
+await d.waitForTimeout(1500);
+await d.screenshot({ path: A + "d-home.png" });
+console.log("ok", href);
+await b.close();

@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #07060b;
+  --bg-2: #110e18;
+  --card: #17131f;
+  --line: #2a2335;
+  --text: #f5f1ea;
+  --muted: #a39cb0;
+  --ki: #ff7a00;
+  --ki-2: #ffc94d;
+  --aura: #38bdf8;
+  --aura-2: #818cf8;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-ki: var(--ki);
+  --color-ki-2: var(--ki-2);
+  --color-aura: var(--aura);
+  --color-aura-2: var(--aura-2);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* fundo com “speed lines” sutis */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, #ff7a0022, transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, #38bdf81a, transparent 60%),
+    repeating-conic-gradient(from 0deg at 50% -20%, #ffffff05 0deg 1deg, transparent 1deg 7deg);
+}
+
+.font-display { font-family: var(--font-display), Impact, sans-serif; letter-spacing: .02em; }
+
+/* LOGO */
+.logo { font-family: var(--font-display), Impact, sans-serif; line-height: 1; }
+.logo-k {
+  display: inline-block; padding: .08em .14em .02em .04em; transform: skewX(-8deg);
+  background: linear-gradient(180deg, #fff7d6 0%, #ffc94d 38%, #ff7a00 72%, #d14a00 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 0 #3b1300) drop-shadow(0 0 .3em #ff7a0066);
+  letter-spacing: .03em;
+}
+.logo-tv {
+  display: inline-block; transform: skewX(-8deg);
+  font-size: .5em; padding: .18em .38em .12em; border-radius: .25em; line-height: 1;
+  background: linear-gradient(135deg, #7dd3fc, var(--aura) 50%, var(--aura-2)); color: #06121f;
+  box-shadow: 0 0 .9em #38bdf877, inset 0 1px 0 #ffffffaa;
+}
+.ki-glow { filter: drop-shadow(0 0 10px #ff9a2bcc) drop-shadow(0 0 22px #ff7a0066); }
+
+/* Aura pulsante */
+@keyframes aura {
+  0%, 100% { box-shadow: 0 0 0 0 #ff7a0066, 0 0 30px #ff7a0033; }
+  50% { box-shadow: 0 0 0 6px #ff7a0011, 0 0 60px #ff7a0066; }
+}
+.aura { animation: aura 2.4s ease-in-out infinite; }
+
+@keyframes float { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+.float { animation: float 3s ease-in-out infinite; }
+
+@keyframes spin-slow { to { transform: rotate(360deg) } }
+.spin-slow { animation: spin-slow 12s linear infinite; }
+
+@keyframes flicker { 0%,100%{opacity:.85} 50%{opacity:1} }
+
+/* Chama de ki atrás de botões principais */
+.btn-ki {
+  position: relative; isolation: isolate;
+  background: linear-gradient(180deg, #ffb347, #ff7a00 60%, #e25a00);
+  color: #1a0900; font-weight: 800;
+  box-shadow: 0 6px 30px -6px #ff7a00aa, inset 0 1px 0 #ffffff88;
+  transition: transform .15s, box-shadow .2s;
+}
+.btn-ki:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 10px 40px -4px #ff7a00cc, inset 0 1px 0 #ffffff88; }
+.btn-ghost { background: #ffffff10; border: 1px solid #ffffff22; backdrop-filter: blur(8px); transition: background .2s; }
+.btn-ghost:hover { background: #ffffff1c; }
+
+/* Cartões */
+.card-hover { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+.card-hover:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 20px 50px -10px var(--glow, #ff7a0088); z-index: 2; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+/* Scanner do radar */
+@keyframes sweep { to { transform: rotate(360deg) } }
+.radar-sweep {
+  background: conic-gradient(from 0deg, #38bdf800 0deg, #38bdf855 50deg, #38bdf800 60deg);
+  animation: sweep 3s linear infinite;
+}
+@keyframes blip { 0%{transform:scale(.6);opacity:1} 100%{transform:scale(2.4);opacity:0} }
+.blip::after { content:""; position:absolute; inset:0; border-radius:9999px; border:2px solid #ffc94d; animation: blip 1.6s ease-out infinite; }
+
+/* Desejo */
+@keyframes beam { 0%{transform:scaleY(0);opacity:0} 30%{opacity:1} 100%{transform:scaleY(1);opacity:1} }
+.beam { transform-origin: bottom; animation: beam 1.2s cubic-bezier(.2,.8,.2,1) forwards; }
+@keyframes rise { from { opacity: 0; transform: translateY(30px) scale(.95) } to { opacity: 1; transform: none } }
+.rise { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes shake { 0%,100%{transform:translate(0)} 25%{transform:translate(-2px,1px)} 50%{transform:translate(2px,-1px)} 75%{transform:translate(-1px,-2px)} }
+.shake { animation: shake .25s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
