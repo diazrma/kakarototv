@@ -12,7 +12,7 @@ export default function Perfil() {
 
   return (
     <div className="mx-auto max-w-[1300px] px-4 md:px-8 pt-8">
-      <section className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-[#1b0d02] via-bg-2 to-[#0b1426] p-6 md:p-10">
+      <section className="relative overflow-show rounded-3xl border border-line bg-gradient-to-br from-[#1b0d02] via-bg-2 to-[#0b1426] p-6 md:p-10">
         <div className="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-ki/20 blur-3xl" />
         <div className="relative flex flex-wrap items-center gap-6">
           <div className="grid place-items-center w-24 h-24 rounded-full bg-gradient-to-br from-ki to-aura-2 font-display text-5xl aura">
